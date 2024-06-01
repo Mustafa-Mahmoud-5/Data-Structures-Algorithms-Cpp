@@ -47,7 +47,7 @@ public:
         // target = top - position + 1;
         int x = -1;
         int target = top - pos + 1;
-        if(target) {
+        if(target >= 0) {
             x = s[target];
         }
         return x;
@@ -74,4 +74,8 @@ int main() {
     s.push(60); // overflow
     s.pop();
     s.display();
+
+
+    cout << "Peak: " << s.peak(3) << endl; // gives 20
+    cout << "Peak: " << s.peak(10) << endl; // gives -1
 }

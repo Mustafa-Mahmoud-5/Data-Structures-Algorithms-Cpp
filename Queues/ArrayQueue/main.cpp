@@ -45,10 +45,8 @@ public:
 
     int dequeue() {
         if(!isEmpty()) {
-            // F->F, then remove it
-            // [][5][10][12][13]
-            int x = this->Q[this->front+1];
             this->front++;
+            int x = this->Q[this->front];
             return x;
         } else {
             cout << "Underflow" << endl;
