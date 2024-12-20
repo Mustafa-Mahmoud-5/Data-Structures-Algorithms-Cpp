@@ -1,0 +1,8 @@
+# Ignore CLion files and folders
+.idea/
+CMakeLists.txt
+cmake-build-debug/
+udemy-pdfs
+# Ignore compiled files
+*.o
+*.out

@@ -1,6 +1,7 @@
 #include <iostream>
-using namespace std;
+#include <algorithm>
 
+using namespace std;
 class Node {
 public:
     int data;
@@ -240,6 +241,67 @@ public:
         }
         return p;
     }
+
+
+    
+    // ------------Some Excercises------
+
+
+    // 1-Write a function getMin (a member of BST), which gets the minimum value in the BST..
+
+    int getMin(Node* n) {
+        if(!n) return INT_MAX;
+        int leftMin = getMin(n->left);
+        int rightMin = getMin(n->right);
+        int subMin = min(leftMin, rightMin);
+        return min(n->data, subMin);
+    }
+
+    /*
+// //2- Write a function getSum(a member of BST) that given a node value, it returns the sum of node values
+// from the root to this node. For example given the value 9 in the given tree, the returned sum should be
+// 27*/
+
+    int getPathSum(int key) {
+        Node* p = root;
+        int s =  0;
+        while(p) {
+            s+=p->data;
+            if(key == p->data) {
+                return s;
+            } else if(key < p->data) {
+                p = p->left;
+            } else {
+                p=p->right;
+            }
+        }
+        return -1; // first condition was not hit, key doesn't exist;
+    }
+
+
+    int getLevel(int key) {
+        int level = 0;
+        Node* p = root;
+        while(p) {
+            if(key == p->data) {
+                return level;
+            } else if(key < p->data) {
+                p = p->left;
+                level++;
+            } else {
+                p=p->right;
+                level++;
+            }
+        }
+        return -1;
+    }
+
+
+    int getNumNodes(Node* n) {
+        if(!n) return 0;
+        return getNumNodes(n->left)  + getNumNodes(n->right) + 1;
+    }
+
 };
 
 int main() {
@@ -267,4 +329,22 @@ int main() {
     bst2.recursiveInsert(bst2.getRoot(), 6);
 
     bst2.inorder(bst2.getRoot());
+
+    cout << endl;
+
+
+
+    BinarySearchTree bst_test;
+
+    bst_test.insert(3);
+    bst_test.insert(5);
+    bst_test.insert(6);
+    bst_test.insert(10);
+    bst_test.insert(12);
+    bst_test.insert(14);
+    bst_test.insert(15);
+
+    cout << "Min: " << bst_test.getMin(bst_test.getRoot()) << endl;
+    cout << "Level: " << bst_test.getLevel(10) << endl;
+    cout << "Path Sum: " << bst_test.getPathSum(10) << endl;
 }

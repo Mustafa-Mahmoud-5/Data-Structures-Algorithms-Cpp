@@ -115,7 +115,7 @@ public:
 
 
 int main() {
-    BinaryHeap BH; // Class Encapsulation is not implemented for learning purposes of heap. (for encapsulation, use Arr/Vector and Length to track actual length after deletion while keeping last element and not removing it)
+    BinaryHeap BH;
     int arr[] = {0, 1,2,3,4,5,6,7,8}; // 1-based idx
     int len = sizeof(arr) / sizeof(arr[0]);
     BH.heapify(arr, len);
